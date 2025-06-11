@@ -208,6 +208,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');">
                         <input type="hidden" name="id_pendidik" value="' . $row['id_pendidik'] . '">
                         <button type="submit" name="delete_pendidik" class="fas fa-trash">Hapus</button>
+                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');">
+                        <input type="hidden" name="id_pendidik" value="' . $row['id_pendidik'] . '">
+                        <button type="submit" name="delete_pendidik" class="fas fa-trash"></button>
                     </form>
                   </td>';
             echo '</tr>';
@@ -220,7 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
         
-    </div>
+    </div>  
+    
 </div>
 
 
