@@ -1,6 +1,6 @@
 <?php
-session_start(); // Mulai sesi
-include 'koneksi.php'; // Menyertakan file koneksi.php
+session_start();
+include 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delete_kegiatan'])) {
@@ -9,21 +9,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = mysqli_prepare($conn, $deleteQuery);
         mysqli_stmt_bind_param($stmt, 'i', $kegiatanId);
         mysqli_stmt_execute($stmt);
-
     } elseif (isset($_POST['delete_pencapaian'])) {
         $pencapaianId = $_POST['id_pencapaian'];
         $deleteQuery = "DELETE FROM pencapaian WHERE id_pencapaian = ?";
         $stmt = mysqli_prepare($conn, $deleteQuery);
         mysqli_stmt_bind_param($stmt, 'i', $pencapaianId);
         mysqli_stmt_execute($stmt);
-    
     } elseif (isset($_POST['delete_pengurus'])) {
         $pengurusId = $_POST['id_pengurus'];
         $deleteQuery = "DELETE FROM pengurus WHERE id_pengurus = ?";
         $stmt = mysqli_prepare($conn, $deleteQuery);
         mysqli_stmt_bind_param($stmt, 'i', $pengurusId);
         mysqli_stmt_execute($stmt);
-    
     } elseif (isset($_POST['delete_pendidik'])) {
         $pendidikId = $_POST['id_pendidik'];
         $deleteQuery = "DELETE FROM pendidik WHERE id_pendidik = ?";
@@ -31,218 +28,312 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_stmt_bind_param($stmt, 'i', $pendidikId);
         mysqli_stmt_execute($stmt);
     }
-    
     header('Location: adminpage.php');
     exit;
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style2.css" media="screen" title="no title">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <link rel="stylesheet" href="css/style3.css">
-    <style>
-        
-        .sidenav a.fas.fa-tools {
-            color: green;
-        }
+    <title>Admin Page</title>
 
-        button.fas.fa-trash:hover {
-            color: darkred;
-        }
+    <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/admin_style.css"> 
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
 
-    </style>
 </head>
-
 <body>
 
-<div id="main">
-    <div id="user-operator-container">
-    <?php
-    
-    $queryKegiatan = "SELECT * FROM kegiatan";
-    $resultKegiatan = mysqli_query($conn, $queryKegiatan);
+<div class="d-flex" id="wrapper">
+    <div id="sidebar-wrapper">
+        <div class="sidebar-heading">Admin Dashboard</div>
+        <div class="list-group list-group-flush">
+            <a href="#kegiatan-section" class="list-group-item list-group-item-action">
+                <i class="fas fa-calendar-alt mr-2"></i> Kegiatan
+            </a>
+            <a href="#pengurus-section" class="list-group-item list-group-item-action">
+                <i class="fas fa-users mr-2"></i> Pengurus
+            </a>
+            <a href="#pencapaian-section" class="list-group-item list-group-item-action">
+                <i class="fas fa-trophy mr-2"></i> Pencapaian
+            </a>
+            <a href="#pendidik-section" class="list-group-item list-group-item-action">
+                <i class="fas fa-chalkboard-teacher mr-2"></i> Pendidik
+            </a>
+            <a href="#" class="list-group-item list-group-item-action text-danger" onclick="getConfirmation()">
+                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            </a>
+        </div>
+    </div>
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-bars"></i> Toggle Menu</button>
+        </nav>
 
-    $queryPencapaian = "SELECT * FROM pencapaian";
-    $resultPencapaian = mysqli_query($conn, $queryPencapaian);
+        <div class="container-fluid">
+            <h1 class="mt-4 mb-4">Panel Administrasi</h1>
 
-    $queryPendidik = "SELECT * FROM pendidik";
-    $resultPendidik = mysqli_query($conn, $queryPendidik);
+            <section id="kegiatan-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Daftar Kegiatan</h2>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        $queryKegiatan = "SELECT * FROM kegiatan";
+                        $resultKegiatan = mysqli_query($conn, $queryKegiatan);
 
-    $queryPengurus = "SELECT * FROM pengurus";
-    $resultPengurus = mysqli_query($conn, $queryPengurus);
-    
-    if (mysqli_num_rows($resultKegiatan) > 0) {
-        echo '<h2>Daftar Kegiatan</h2>';
-        echo '<table>';
-        echo '<tr>
-                <th>No.</th>
-                <th>Tanggal</th>
-                <th>Deskripsi</th>
-                <th>Foto</th>
-                <th>Aksi</th>
-              </tr>';
+                        if (mysqli_num_rows($resultKegiatan) > 0) {
+                            echo '<div class="table-responsive">';
+                            echo '<table class="table table-bordered table-hover">';
+                            echo '<thead class="thead-light"><tr>
+                                    <th>No.</th>
+                                    <th>Tanggal</th>
+                                    <th>Deskripsi</th>
+                                    <th>Foto</th>
+                                    <th>Aksi</th>
+                                  </tr></thead><tbody>';
 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($resultKegiatan)) {
-            echo '<tr>';
-            echo '<td>' . $no . '</td>';
-            echo '<td>' . $row['tanggal_kegiatan'] . '</td>';
-            echo '<td>' . $row['deskripsi_kegiatan'] . '</td>';
-            echo '<td><img src="' . $row['foto_kegiatan'] . '" alt="Foto" style="max-width: 100px;"></td>';
-            echo '<td>
-                    <a href="edit_Kegiatan.php?id=' . $row['id_kegiatan'] . '" class="fas fa-edit"> Edit</a>
-                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus kegiatan ini?\');">
-                        <input type="hidden" name="id_kegiatan" value="' . $row['id_kegiatan'] . '">
-                        <button type="submit" name="delete_kegiatan" class="fas fa-trash">Hapus</button>
-                    </form>
-                  </td>';
-            echo '</tr>';
-            $no++;
-        }
-        echo '</table>';
-        echo '<a href="tambah_Kegiatan.php" class="fas fa-plus"> Tambah Kegiatan</a>';
+                            $no = 1;
+                            while ($row = mysqli_fetch_assoc($resultKegiatan)) {
+                                echo '<tr>';
+                                echo '<td>' . $no . '</td>';
+                                echo '<td>' . htmlspecialchars($row['tanggal_kegiatan']) . '</td>';
+                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 100)) . '...</td>'; // Potong deskripsi
+                                echo '<td>';
+                                if (!empty($row['foto_kegiatan']) && file_exists($row['foto_kegiatan'])) {
+                                    echo '<img src="' . htmlspecialchars($row['foto_kegiatan']) . '" alt="Foto Kegiatan">';
+                                } else {
+                                    echo 'No Image';
+                                }
+                                echo '</td>';
+                                echo '<td>
+                                        <a href="edit_Kegiatan.php?id=' . htmlspecialchars($row['id_kegiatan']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus kegiatan ini?\');" style="display:inline-block;">
+                                            <input type="hidden" name="id_kegiatan" value="' . htmlspecialchars($row['id_kegiatan']) . '">
+                                            <button type="submit" name="delete_kegiatan" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                        </form>
+                                      </td>';
+                                echo '</tr>';
+                                $no++;
+                            }
+                            echo '</tbody></table>';
+                            echo '</div>'; // End table-responsive
+                            echo '<a href="tambah_Kegiatan.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Kegiatan</a>';
+                        } else {
+                            echo '<div class="alert alert-info" role="alert">Tidak ada data kegiatan.</div>';
+                            echo '<a href="tambah_Kegiatan.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Kegiatan</a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </section>
 
-    } else {
-        echo 'Tidak ada data kegiatan.';
-    }
+            <section id="pengurus-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Daftar Pengurus</h2>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        $queryPengurus = "SELECT * FROM pengurus";
+                        $resultPengurus = mysqli_query($conn, $queryPengurus);
 
-    if (mysqli_num_rows($resultPengurus) > 0) {
-        echo '<h2>Daftar Pengurus</h2>';
-        echo '<table>';
-        echo '<tr>
-                <th>No.</th>
-                <th>Nama Pengurus</th>
-                <th>Jabatan Pengurus</th>
-                <th>Foto Pengurus</th>
-                <th>Deskripsi Pengurus</th>
-                <th>Aksi</th>
-              </tr>';
+                        if (mysqli_num_rows($resultPengurus) > 0) {
+                            echo '<div class="table-responsive">';
+                            echo '<table class="table table-bordered table-hover">';
+                            echo '<thead class="thead-light"><tr>
+                                    <th>No.</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    <th>Deskripsi</th>
+                                    <th>Foto</th>
+                                    <th>Aksi</th>
+                                  </tr></thead><tbody>';
 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($resultPengurus)) {
-            echo '<tr>';
-            echo '<td>' . $no . '</td>';
-            echo '<td>' . $row['nama_pengurus'] . '</td>';
-            echo '<td>' . $row['jabatan_pengurus'] . '</td>';
-            echo '<td>' . $row['deskripsi_pengurus'] . '</td>';
-            echo '<td><img src="' . $row['foto_pengurus'] . '" alt="Foto Pengurus" style="max-width: 100px;"></td>';
-            echo '<td>
-                    <a href="edit_pengurus.php?id=' . $row['id_pengurus'] . '" class="fas fa-edit"> Edit</a>
-                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pengurus ini?\');">
-                        <input type="hidden" name="id_pengurus" value="' . $row['id_pengurus'] . '">
-                        <button type="submit" name="delete_pengurus" class="fas fa-trash">Hapus</button>
-                    </form>
-                  </td>';
-            echo '</tr>';
-            $no++;
-        }
-        echo '</table>';
-        echo '<a href="tambah_Pengurus.php" class="fas fa-plus"> Tambah Pengurus</a>';
+                            $no = 1;
+                            while ($row = mysqli_fetch_assoc($resultPengurus)) {
+                                echo '<tr>';
+                                echo '<td>' . $no . '</td>';
+                                echo '<td>' . htmlspecialchars($row['nama_pengurus']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['jabatan_pengurus']) . '</td>';
+                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_pengurus'], 0, 100)) . '...</td>';
+                                echo '<td>';
+                                if (!empty($row['foto_pengurus']) && file_exists($row['foto_pengurus'])) {
+                                    echo '<img src="' . htmlspecialchars($row['foto_pengurus']) . '" alt="Foto Pengurus">';
+                                } else {
+                                    echo 'No Image';
+                                }
+                                echo '</td>';
+                                echo '<td>
+                                        <a href="edit_pengurus.php?id=' . htmlspecialchars($row['id_pengurus']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pengurus ini?\');" style="display:inline-block;">
+                                            <input type="hidden" name="id_pengurus" value="' . htmlspecialchars($row['id_pengurus']) . '">
+                                            <button type="submit" name="delete_pengurus" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                        </form>
+                                      </td>';
+                                echo '</tr>';
+                                $no++;
+                            }
+                            echo '</tbody></table>';
+                            echo '</div>'; // End table-responsive
+                            echo '<a href="tambah_Pengurus.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pengurus</a>';
+                        } else {
+                            echo '<div class="alert alert-info" role="alert">Tidak ada data pengurus.</div>';
+                            echo '<a href="tambah_Pengurus.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pengurus</a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </section>
 
-    } else {
-        echo 'Tidak ada data pengurus.';
-    }
+            <section id="pencapaian-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Daftar Pencapaian</h2>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        $queryPencapaian = "SELECT * FROM pencapaian";
+                        $resultPencapaian = mysqli_query($conn, $queryPencapaian);
 
-        if (mysqli_num_rows($resultPencapaian) > 0) {
-        echo '<h2>Daftar Pencapaian</h2>';
-        echo '<table>';
-        echo '<tr>
-                <th>No.</th>
-                <th>Judul Pencapaian</th>
-                <th>Foto Pencapaian</th>
-                <th>Deskripsi Pencapaian</th>
-                <th>Aksi</th>
-              </tr>';
+                        if (mysqli_num_rows($resultPencapaian) > 0) {
+                            echo '<div class="table-responsive">';
+                            echo '<table class="table table-bordered table-hover">';
+                            echo '<thead class="thead-light"><tr>
+                                    <th>No.</th>
+                                    <th>Judul</th>
+                                    <th>Deskripsi</th>
+                                    <th>Foto</th>
+                                    <th>Aksi</th>
+                                  </tr></thead><tbody>';
 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($resultPencapaian)) {
-            echo '<tr>';
-            echo '<td>' . $no . '</td>';
-            echo '<td>' . $row['judul_pencapaian'] . '</td>'; // pastikan kolom ini benar
-            echo '<td><img src="' . $row['foto_pencapaian'] . '" alt="Foto Pencapaian" style="max-width: 100px;"></td>';
-            echo '<td>' . $row['deskripsi_pencapaian'] . '</td>';
-            echo '<td>
-                    <a href="edit_pencapaian.php?id=' . $row['id_pencapaian'] . '" class="fas fa-edit"> Edit</a>
-                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pencapaian ini?\');">
-                        <input type="hidden" name="id_pencapaian" value="' . $row['id_pencapaian'] . '">
-                        <button type="submit" name="delete_pencapaian" class="fas fa-trash">Hapus</button>
-                    </form>
-                  </td>';
-            echo '</tr>';
-            $no++;
-        }
-        echo '</table>';
-        echo '<a href="tambah_Pencapaian.php" class="fas fa-plus"> Tambah Pencapaian</a>';
-    } else {
-    echo 'Tidak ada data pencapaian.';
-}
+                            $no = 1;
+                            while ($row = mysqli_fetch_assoc($resultPencapaian)) {
+                                echo '<tr>';
+                                echo '<td>' . $no . '</td>';
+                                echo '<td>' . htmlspecialchars($row['judul_pencapaian']) . '</td>';
+                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_pencapaian'], 0, 100)) . '...</td>';
+                                echo '<td>';
+                                if (!empty($row['foto_pencapaian']) && file_exists($row['foto_pencapaian'])) {
+                                    echo '<img src="' . htmlspecialchars($row['foto_pencapaian']) . '" alt="Foto Pencapaian">';
+                                } else {
+                                    echo 'No Image';
+                                }
+                                echo '</td>';
+                                echo '<td>
+                                        <a href="edit_pencapaian.php?id=' . htmlspecialchars($row['id_pencapaian']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pencapaian ini?\');" style="display:inline-block;">
+                                            <input type="hidden" name="id_pencapaian" value="' . htmlspecialchars($row['id_pencapaian']) . '">
+                                            <button type="submit" name="delete_pencapaian" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                        </form>
+                                      </td>';
+                                echo '</tr>';
+                                $no++;
+                            }
+                            echo '</tbody></table>';
+                            echo '</div>'; // End table-responsive
+                            echo '<a href="tambah_Pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
+                        } else {
+                            echo '<div class="alert alert-info" role="alert">Tidak ada data pencapaian.</div>';
+                            echo '<a href="tambah_Pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </section>
 
-    if (mysqli_num_rows($resultPendidik) > 0) {
-        echo '<h2>Daftar Pendidik</h2>';
-        echo '<table>';
-        echo '<tr>
-                <th>No.</th>
-                <th>Nama Pendidik</th>
-                <th>Jabatan Pendidik</th>
-                <th>Foto Pendidik</th>
-                <th>Deskripsi Pendidik</th>
-                <th>Aksi</th>
-              </tr>';
+            <section id="pendidik-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Daftar Pendidik</h2>
+                    </div>
+                    <div class="card-body">
+                        <?php
+                        $queryPendidik = "SELECT * FROM pendidik";
+                        $resultPendidik = mysqli_query($conn, $queryPendidik);
 
-        $no = 1;
-        while ($row = mysqli_fetch_assoc($resultPendidik)) {
-            echo '<tr>';
-            echo '<td>' . $no . '</td>';
-            echo '<td>' . $row['nama_pendidik'] . '</td>';
-            echo '<td>' . $row['jabatan_pendidik'] . '</td>';
-            echo '<td>' . $row['deskripsi_pendidik'] . '</td>';
-            echo '<td><img src="' . $row['foto_pendidik'] . '" alt="Foto Pendidik" style="max-width: 100px;"></td>';
-            echo '<td>
-                    <a href="edit_pendidik.php?id=' . $row['id_pendidik'] . '" class="fas fa-edit"> Edit</a>
-                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');">
-                        <input type="hidden" name="id_pendidik" value="' . $row['id_pendidik'] . '">
-                        <button type="submit" name="delete_pendidik" class="fas fa-trash">Hapus</button>
-                    <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');">
-                        <input type="hidden" name="id_pendidik" value="' . $row['id_pendidik'] . '">
-                        <button type="submit" name="delete_pendidik" class="fas fa-trash"></button>
-                    </form>
-                  </td>';
-            echo '</tr>';
-            $no++;
-        }
-        echo '</table>';
-        echo '<a href="tambah_Pendidik.php" class="fas fa-plus"> Tambah Pendidik</a>';
-    } else {
-        echo 'Tidak ada data pendidik.';
-    }
-    ?>
-        
-    </div>  
-    
-</div>
+                        if (mysqli_num_rows($resultPendidik) > 0) {
+                            echo '<div class="table-responsive">';
+                            echo '<table class="table table-bordered table-hover">';
+                            echo '<thead class="thead-light"><tr>
+                                    <th>No.</th>
+                                    <th>Nama</th>
+                                    <th>Jabatan</th>
+                                    <th>Deskripsi</th>
+                                    <th>Foto</th>
+                                    <th>Aksi</th>
+                                  </tr></thead><tbody>';
 
+                            $no = 1;
+                            while ($row = mysqli_fetch_assoc($resultPendidik)) {
+                                echo '<tr>';
+                                echo '<td>' . $no . '</td>';
+                                echo '<td>' . htmlspecialchars($row['nama_pendidik']) . '</td>';
+                                echo '<td>' . htmlspecialchars($row['jabatan_pendidik']) . '</td>';
+                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_pendidik'], 0, 100)) . '...</td>';
+                                echo '<td>';
+                                if (!empty($row['foto_pendidik']) && file_exists($row['foto_pendidik'])) {
+                                    echo '<img src="' . htmlspecialchars($row['foto_pendidik']) . '" alt="Foto Pendidik">';
+                                } else {
+                                    echo 'No Image';
+                                }
+                                echo '</td>';
+                                echo '<td>
+                                        <a href="edit_pendidik.php?id=' . htmlspecialchars($row['id_pendidik']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');" style="display:inline-block;">
+                                            <input type="hidden" name="id_pendidik" value="' . htmlspecialchars($row['id_pendidik']) . '">
+                                            <button type="submit" name="delete_pendidik" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                        </form>
+                                      </td>';
+                                echo '</tr>';
+                                $no++;
+                            }
+                            echo '</tbody></table>';
+                            echo '</div>';
+                            echo '<a href="tambah_Pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
+                        } else {
+                            echo '<div class="alert alert-info" role="alert">Tidak ada data pendidik.</div>';
+                            echo '<a href="tambah_Pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </section>
 
+        </div>
+    </div>
+    </div>
+<script src="assets/vendors/jquery/jquery.min.js"></script>
+<script src="assets/vendors/bootstrap/js/popper.js"></script>
+<script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/script.js"></script>
 
 <script>
-function getConfirmation(){
-    var retval = confirm ("apakah anda yakin ingin keluar?");
-    if(retval == true){
-        window.location.href ="index.html"
-        return true;
-    }else{
-        window.location.href ="adminpage.php"
-        return false;
-    }   
-}
-</script>
+    // Pastikan ini dijalankan setelah DOM siap
+    $(document).ready(function() {
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    });
 
-<script src="script.js"></script>
+    function getConfirmation(){
+        var retval = confirm ("Apakah Anda yakin ingin keluar?");
+        if(retval == true){
+            window.location.href ="index.html"; // Pastikan ini mengarah ke halaman utama atau logout
+            return true;
+        }else{
+            return false;
+        }   
+    }
+</script>
 
 </body>
 </html>

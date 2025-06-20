@@ -1,0 +1,272 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+}
+
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #343a40; /* Dark background for sidebar */
+    color: #fff;
+    transition: all 0.3s;
+    padding-top: 20px;
+    /* Ini penting untuk memastikan sidebar bisa disembunyikan/dimunculkan */
+    position: fixed; /* Ubah menjadi fixed agar tidak scroll bersama konten */
+    height: 100%; /* Isi tinggi penuh */
+    z-index: 1000; /* Pastikan di atas konten lain */
+    left: 0; /* Mulai dari kiri */
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #495057;
+    margin-bottom: 20px;
+}
+
+#sidebar-wrapper .list-group {
+    width: 100%;
+}
+
+#sidebar-wrapper .list-group-item {
+    background-color: #343a40;
+    color: #adb5bd;
+    border: none;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #495057;
+    color: #fff;
+}
+
+/* Toggled State untuk Sidebar */
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px; /* Sembunyikan sidebar ke kiri */
+}
+
+/* Toggled State untuk Konten Utama */
+#wrapper.toggled #page-content-wrapper {
+    margin-left: 0; /* Geser konten ke kiri */
+}
+
+/* Perhatikan ini: untuk layout responsif */
+@media (min-width: 768px) {
+    #sidebar-wrapper {
+        margin-left: 0; /* Sidebar terlihat di layar lebar */
+    }
+
+    #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+        margin-left: 250px; /* Konten dimulai setelah sidebar di layar lebar */
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: -250px; /* Sembunyikan sidebar di layar lebar saat toggled */
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 0; /* Konten mengambil seluruh lebar di layar lebar saat toggled */
+    }
+}
+
+#page-content-wrapper {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #f4f7f6;
+    /* Awalnya, beri margin kiri sesuai lebar sidebar untuk layar besar */
+    margin-left: 250px; /* Ini penting agar konten tidak tertutup sidebar */
+    transition: margin-left 0.3s; /* Tambahkan transisi untuk efek halus */
+}
+
+
+.card {
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: #007bff; /* Primary color for card headers */
+    color: white;
+    font-weight: bold;
+    border-bottom: none;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    padding: 1rem 1.25rem; /* Standard Bootstrap padding */
+}
+
+/* Penting: Mengatur lebar kolom agar tetap */
+.table {
+    table-layout: fixed;
+    width: 100%; /* Memastikan tabel mengambil seluruh lebar yang tersedia */
+}
+
+.table thead th {
+    background-color: #e9ecef; /* Light grey for table headers */
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+/* --- Perubahan untuk ukuran gambar (JAUH lebih kecil lagi) --- */
+.table img {
+    max-width: 20px; /* Lebar maksimum gambar diatur menjadi 20 piksel */
+    height: auto;    /* Tinggi menyesuaikan proporsi aspek */
+    border-radius: 3px; /* Sedikit kurangi radius */
+    box-shadow: 0 0 2px rgba(0,0,0,0.05); /* Sedikit kurangi bayangan */
+    vertical-align: middle;
+}
+
+@media (min-width: 768px) {
+    .table img {
+        max-width: 30px; /* Ukuran sedikit lebih besar untuk layar tablet ke atas */
+    }
+}
+/* --- Akhir perubahan ukuran gambar --- */
+
+/* Menyesuaikan lebar kolom agar lebih proporsional */
+/* Untuk tabel Kegiatan */
+.table:has(thead th:contains("Tanggal")) th:nth-child(1),
+.table:has(thead th:contains("Tanggal")) td:nth-child(1) { /* Kolom No. */
+    width: 5%;
+}
+.table:has(thead th:contains("Tanggal")) th:nth-child(2),
+.table:has(thead th:contains("Tanggal")) td:nth-child(2) { /* Kolom Tanggal */
+    width: 15%;
+}
+.table:has(thead th:contains("Tanggal")) th:nth-child(3),
+.table:has(thead th:contains("Tanggal")) td:nth-child(3) { /* Kolom Deskripsi */
+    width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table:has(thead th:contains("Tanggal")) th:nth-child(4),
+.table:has(thead th:contains("Tanggal")) td:nth-child(4) { /* Kolom Foto */
+    width: 10%;
+}
+.table:has(thead th:contains("Tanggal")) th:nth-child(5),
+.table:has(thead th:contains("Tanggal")) td:nth-child(5) { /* Kolom Aksi */
+    width: 30%;
+    min-width: 150px; /* Pastikan ada ruang minimum untuk tombol aksi */
+}
+
+
+/* Untuk tabel Pengurus, Pencapaian, Pendidik (dengan 6 kolom) */
+.table:has(thead th:contains("Nama Pendidik")),
+.table:has(thead th:contains("Nama Pengurus")),
+.table:has(thead th:contains("Judul Pencapaian")) {
+    /* override general table-layout if needed for more specific control, but fixed is already set above */
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(1), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(1),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(1), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(1),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(1), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(1) {
+    width: 5%; /* Kolom No. */
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(2), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(2),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(2), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(2),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(2), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(2) {
+    width: 15%; /* Nama/Judul */
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(3), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(3),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(3), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(3),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(3), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(3) {
+    width: 20%; /* Jabatan/Deskripsi (kolom ke-3) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(4), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(4),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(4), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(4),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(4), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(4) {
+    width: 25%; /* Deskripsi (kolom ke-4 untuk pengurus/pendidik, foto untuk pencapaian) */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(5), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(5),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(5), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(5),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(5), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(5) {
+    width: 10%; /* Foto (kolom ke-5) */
+}
+.table:has(thead th:contains("Nama Pendidik")) th:nth-child(6), .table:has(thead th:contains("Nama Pendidik")) td:nth-child(6),
+.table:has(thead th:contains("Nama Pengurus")) th:nth-child(6), .table:has(thead th:contains("Nama Pengurus")) td:nth-child(6),
+.table:has(thead th:contains("Judul Pencapaian")) th:nth-child(6), .table:has(thead th:contains("Judul Pencapaian")) td:nth-child(6) {
+    width: 25%; /* Kolom Aksi */
+    min-width: 150px;
+}
+
+
+.btn-action {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.btn-edit {
+    color: #28a745; /* Green for edit */
+    border: 1px solid #28a745;
+    background-color: #fff;
+}
+
+.btn-edit:hover {
+    color: #fff;
+    background-color: #28a745;
+    text-decoration: none;
+}
+
+.btn-delete {
+    color: #dc3545; /* Red for delete */
+    border: 1px solid #dc3545;
+    background-color: #fff;
+}
+
+.btn-delete:hover {
+    color: #fff;
+    background-color: #dc3545;
+    text-decoration: none;
+}
+
+.btn-add {
+    background-color: #17a2b8; /* Info color for add button */
+    color: white;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-add:hover {
+    background-color: #138496;
+    color: white;
+    text-decoration: none;
+}
+
+/* Adjustments for Font Awesome icons used as buttons */
+form button.fas {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: inherit; /* Inherit font size from parent if needed */
+    padding: 0; /* Remove default button padding */
+    margin: 0; /* Remove default button margin */
+}
+
+/* Ensure consistent icon styling for buttons/links */
+.btn .fas {
+    margin-right: 5px;
+}
