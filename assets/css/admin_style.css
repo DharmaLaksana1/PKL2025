@@ -23,6 +23,16 @@ body {
     left: 0; /* Mulai dari kiri */
 }
 
+#menu-toggle {
+    background-color: #1D292E; /* warna latar tombol */
+    color: white;              /* warna teks/icon */
+    border: none;              /* hilangkan garis tepi */
+}
+
+#menu-toggle:hover {
+    background-color: #2E3B40; /* warna saat hover */
+}
+
 #sidebar-wrapper .sidebar-heading {
     padding: 10px 20px;
     font-size: 1.5rem;
@@ -99,13 +109,17 @@ body {
 }
 
 .card-header {
-    background-color: #007bff; /* Primary color for card headers */
+    background-color: #1D292E; /* Primary color for card headers */
     color: white;
     font-weight: bold;
     border-bottom: none;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     padding: 1rem 1.25rem; /* Standard Bootstrap padding */
+}
+
+.card-header h2 {
+    color: #dfdfdf; /* gold */
 }
 
 /* Penting: Mengatur lebar kolom agar tetap */
@@ -241,7 +255,7 @@ body {
 }
 
 .btn-add {
-    background-color: #17a2b8; /* Info color for add button */
+    background-color: #20ad96; /* Info color for add button */
     color: white;
     margin-top: 20px;
     padding: 10px 20px;
@@ -269,4 +283,16 @@ form button.fas {
 /* Ensure consistent icon styling for buttons/links */
 .btn .fas {
     margin-right: 5px;
+}
+
+/* Target tombol 'Batal' yang kedua */
+.form-group.mt-4 a.btn-add {
+    background-color: #6c757d; /* abu-abu */
+    color: white;
+    border: none;
+}
+
+.form-group.mt-4 a.btn-add:hover {
+    background-color: #5a6268;
+    color: white;
 }

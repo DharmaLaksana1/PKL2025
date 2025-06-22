@@ -63,24 +63,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Pendidik</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/admin_style.css">
 </head>
-<body>
-    <h2>Edit Data Pendidik</h2>
-    <form action="edit_pendidik.php?id=<?= $id_pendidik ?>" method="POST" enctype="multipart/form-data">
-        <label for="nama_pendidik">Nama Pendidik:</label><br>
-        <input type="text" name="nama_pendidik" value="<?= $data['nama_pendidik'] ?>" required><br><br>
+<body style="background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div class="container mt-5">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h2>Edit Data Pendidik</h2>
+      </div>
+      <div class="card-body">
+        <form action="edit_pendidik.php?id=<?= $id_pendidik ?>" method="POST" enctype="multipart/form-data">
+          
+          <!-- Nama Pendidik -->
+          <div class="form-group">
+            <label for="nama_pendidik">Nama Pendidik</label>
+            <input 
+              type="text" 
+              name="nama_pendidik" 
+              class="form-control" 
+              value="<?= $data['nama_pendidik'] ?>" 
+              required>
+          </div>
 
-        <label for="jabatan_pendidik">Jabatan:</label><br>
-        <input type="text" name="jabatan_pendidik" value="<?= $data['jabatan_pendidik'] ?>" required><br><br>
+          <!-- Jabatan -->
+          <div class="form-group">
+            <label for="jabatan_pendidik">Jabatan</label>
+            <input 
+              type="text" 
+              name="jabatan_pendidik" 
+              class="form-control" 
+              value="<?= $data['jabatan_pendidik'] ?>" 
+              required>
+          </div>
 
-        <label for="deskripsi_pendidik">Deskripsi:</label><br>
-        <textarea name="deskripsi_pendidik" rows="5" cols="40"><?= $data['deskripsi_pendidik'] ?></textarea><br><br>
+          <!-- Deskripsi -->
+          <div class="form-group">
+            <label for="deskripsi_pendidik">Deskripsi</label>
+            <textarea 
+              name="deskripsi_pendidik" 
+              class="form-control" 
+              rows="5"><?= $data['deskripsi_pendidik'] ?></textarea>
+          </div>
 
-        <label for="foto_pendidik">Foto Pendidik:</label><br>
-        <img src="<?= $data['foto_pendidik'] ?>" width="150" alt="Foto saat ini"><br><br>
-        <input type="file" name="foto_pendidik" accept="image/*"><br><br>
+          <!-- Foto -->
+          <div class="form-group">
+            <label for="foto_pendidik">Foto Pendidik Saat Ini</label><br>
+            <img 
+              src="<?= $data['foto_pendidik'] ?>" 
+              width="150" 
+              class="img-thumbnail mb-2" 
+              alt="Foto Pendidik"><br>
+            <input 
+              type="file" 
+              name="foto_pendidik" 
+              class="form-control-file" 
+              accept="image/*">
+          </div>
 
-        <input type="submit" value="Simpan Perubahan">
-    </form>
+          <!-- Tombol -->
+           <div class="form-group mt-4">
+                        <input type="submit" value="Simpan Perubahan" class="btn btn-add">
+                        <a href="adminpage.php" class="btn btn-add">Batal</a>
+                    </div>
+          <div class="form-group mt-4">
+           
+
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
+</html>
+
 </html>

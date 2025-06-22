@@ -63,24 +63,77 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Pengurus</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/admin_style.css">
 </head>
-<body>
-    <h2>Edit Data Pengurus</h2>
-    <form action="edit_pengurus.php?id=<?= $id_pengurus ?>" method="POST" enctype="multipart/form-data">
-        <label for="nama_pengurus">Nama Pengurus:</label><br>
-        <input type="text" name="nama_pengurus" value="<?= $data['nama_pengurus'] ?>" required><br><br>
+<body style="background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <div class="container mt-5">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h2>Edit Data Pengurus</h2>
+      </div>
+      <div class="card-body">
+        <form action="edit_pengurus.php?id=<?= $id_pengurus ?>" method="POST" enctype="multipart/form-data">
 
-        <label for="jabatan_pengurus">Jabatan:</label><br>
-        <input type="text" name="jabatan_pengurus" value="<?= $data['jabatan_pengurus'] ?>" required><br><br>
+          <!-- Nama Pengurus -->
+          <div class="form-group">
+            <label for="nama_pengurus">Nama Pengurus</label>
+            <input
+              type="text"
+              name="nama_pengurus"
+              class="form-control"
+              value="<?= $data['nama_pengurus'] ?>"
+              required>
+          </div>
 
-        <label for="deskripsi_pengurus">Deskripsi:</label><br>
-        <textarea name="deskripsi_pengurus" rows="5" cols="40"><?= $data['deskripsi_pengurus'] ?></textarea><br><br>
+          <!-- Jabatan -->
+          <div class="form-group">
+            <label for="jabatan_pengurus">Jabatan</label>
+            <input
+              type="text"
+              name="jabatan_pengurus"
+              class="form-control"
+              value="<?= $data['jabatan_pengurus'] ?>"
+              required>
+          </div>
 
-        <label for="foto_pengurus">Foto Pengurus:</label><br>
-        <img src="<?= $data['foto_pengurus'] ?>" width="150" alt="Foto saat ini"><br><br>
-        <input type="file" name="foto_pengurus" accept="image/*"><br><br>
+          <!-- Deskripsi -->
+          <div class="form-group">
+            <label for="deskripsi_pengurus">Deskripsi</label>
+            <textarea
+              name="deskripsi_pengurus"
+              class="form-control"
+              rows="5"><?= $data['deskripsi_pengurus'] ?></textarea>
+          </div>
 
-        <input type="submit" value="Simpan Perubahan">
-    </form>
+          <!-- Foto -->
+          <div class="form-group">
+            <label for="foto_pengurus">Foto Pengurus Saat Ini</label><br>
+            <img
+              src="<?= $data['foto_pengurus'] ?>"
+              width="150"
+              class="img-thumbnail mb-2"
+              alt="Foto Pengurus"><br>
+            <input
+              type="file"
+              name="foto_pengurus"
+              class="form-control-file"
+              accept="image/*">
+          </div>
+
+          <!-- Tombol -->
+          <div class="form-group mt-4">
+                        <input type="submit" value="Simpan Perubahan" class="btn btn-add">
+                        <a href="adminpage.php" class="btn btn-add">Batal</a>
+                    </div>
+          <div class="form-group mt-4">
+
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
+</html>
+
 </html>

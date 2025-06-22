@@ -62,21 +62,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Pencapaian</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/admin_style.css"> <!-- pastikan ini memuat CSS kamu -->
 </head>
-<body>
-    <h2>Edit Data Pencapaian</h2>
-    <form action="edit_pencapaian.php?id=<?= $id_pencapaian ?>" method="POST" enctype="multipart/form-data">
-        <label for="judul_pencapaian">Judul Pencapaian:</label><br>
-        <input type="text" name="judul_pencapaian" value="<?= $data['judul_pencapaian'] ?>" required><br><br>
+<body style="background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h2>Edit Data Pencapaian</h2>
+            </div>
+            <div class="card-body">
+                <form action="edit_pencapaian.php?id=<?= $id_pencapaian ?>" method="POST" enctype="multipart/form-data">
+                    
+                    <!-- Judul -->
+                    <div class="form-group">
+                        <label for="judul_pencapaian">Judul Pencapaian</label>
+                        <input type="text" name="judul_pencapaian" class="form-control" value="<?= $data['judul_pencapaian'] ?>" required>
+                    </div>
 
-        <label for="deskripsi_pencapaian">Deskripsi:</label><br>
-        <textarea name="deskripsi_pencapaian" rows="5" cols="40"><?= $data['deskripsi_pencapaian'] ?></textarea><br><br>
+                    <!-- Deskripsi -->
+                    <div class="form-group">
+                        <label for="deskripsi_pencapaian">Deskripsi</label>
+                        <textarea name="deskripsi_pencapaian" class="form-control" rows="5"><?= $data['deskripsi_pencapaian'] ?></textarea>
+                    </div>
 
-        <label for="foto_pencapaian">Foto Pencapaian:</label><br>
-        <img src="<?= $data['foto_pencapaian'] ?>" width="150" alt="Foto saat ini"><br><br>
-        <input type="file" name="foto_pencapaian" accept="image/*"><br><br>
+                    <!-- Foto -->
+                    <div class="form-group">
+                        <label for="foto_pencapaian">Foto Pencapaian Saat Ini</label><br>
+                        <img src="<?= $data['foto_pencapaian'] ?>" width="150" class="img-thumbnail mb-2" alt="Foto Pencapaian"><br>
+                        <input type="file" name="foto_pencapaian" class="form-control-file" accept="image/*">
+                    </div>
 
-        <input type="submit" value="Simpan Perubahan">
-    </form>
+                    <!-- Tombol -->
+                    <div class="form-group mt-4">
+                        <input type="submit" value="Simpan Perubahan" class="btn btn-add">
+                        <a href="adminpage.php" class="btn btn-add">Batal</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
-</html>
