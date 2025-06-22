@@ -3859,6 +3859,25 @@ Recent post widget
   padding-top: 10px;
 }
 
+.pendidik-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.pendidik-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%; /* Membulatkan gambar */
+  border: 2px solid #ddd;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+
 .fixed-btm-top.reveal {
   opacity: 1;
   visibility: visible;
