@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/admin_style.css"> <!-- Sesuaikan dengan file CSS kamu -->
 </head>
+
 <body style="background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
     <div class="container mt-5">
         <div class="card shadow-sm">
