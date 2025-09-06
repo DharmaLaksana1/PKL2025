@@ -48,7 +48,7 @@
                     </button>
     
                     <!-- Collapse -->
-                     <!-- / .navbar-collapse -->
+                    <?php include 'navbar.php'; ?>
                 </div> <!-- / .container -->
             </nav>
         </div>
