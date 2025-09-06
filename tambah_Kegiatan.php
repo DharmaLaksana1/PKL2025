@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2>Tambah Kegiatan</h2>
             </div>
             <div class="card-body">
-                <form action="tambah_kegiatan.php" method="POST" enctype="multipart/form-data">
+                <form action="tambah_Kegiatan.php" method="POST" enctype="multipart/form-data">
                     
                     <!-- Tanggal -->
                     <div class="form-group">
