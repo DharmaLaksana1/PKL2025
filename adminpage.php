@@ -239,10 +239,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                             echo '</tbody></table>';
                             echo '</div>'; // End table-responsive
-                            echo '<a href="tambah_Pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
+                            echo '<a href="tambah_pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
                         } else {
                             echo '<div class="alert alert-info" role="alert">Tidak ada data pencapaian.</div>';
-                            echo '<a href="tambah_Pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
+                            echo '<a href="tambah_pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
                         }
                         ?>
                     </div>
@@ -297,10 +297,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             }
                             echo '</tbody></table>';
                             echo '</div>';
-                            echo '<a href="tambah_Pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
+                            echo '<a href="tambah_pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
                         } else {
                             echo '<div class="alert alert-info" role="alert">Tidak ada data pendidik.</div>';
-                            echo '<a href="tambah_Pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
+                            echo '<a href="tambah_pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
                         }
                         ?>
                     </div>
