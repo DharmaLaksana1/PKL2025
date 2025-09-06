@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h2>Tambah Data Pengurus</h2>
             </div>
             <div class="card-body">
-                <form action="tambah_pengurus.php" method="POST" enctype="multipart/form-data">
+                <form action="tambah_Pengurus.php" method="POST" enctype="multipart/form-data">
 
                     <!-- Nama -->
                     <div class="form-group">
