@@ -25,39 +25,17 @@ require 'koneksi.php';   // koneksi ke database
 
 <body id="top-header">
 
-<header>
-  <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid container-padding">
-        <a class="navbar-brand" href="index.html">
-          <img src="assets/images/dark-logo.png" alt="Eduhash" class="img-fluid">
-        </a>
+<header> 
+   
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
-          <span class="fa fa-bars"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarMenu">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item"><a href="index.html" class="nav-link js-scroll-trigger">Dashboard</a></li>
-            <li class="nav-item"><a href="index-2.html" class="nav-link js-scroll-trigger">Visi Misi</a></li>
-            <li class="nav-item"><a href="about.php" class="nav-link js-scroll-trigger" style="color: #20ad96;">Tentang Kami</a></li>
-            <li class="nav-item"><a href="blog.php" class="nav-link js-scroll-trigger">Kegiatan Kami</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link js-scroll-trigger">Hubungi Kami</a></li>
-          </ul>
-          <div class="d-flex align-items-center">
-            <div class="header-socials social-links d-none d-lg-none d-xl-block">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fab fa-pinterest"></i></a>
-            </div>
-          </div>
+        <!-- Main Menu Start -->
+       
+        <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
+            <?php include 'navbar.php'; ?>
         </div>
-      </div>
-    </nav>
-  </div>
-</header>
+
+        
+    </header>
 
 <section class="page-header">
   <div class="container">
