@@ -35,22 +35,7 @@
         <!-- Main Menu Start -->
        
         <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid container-padding">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets/images/dark-logo.png" alt="Eduhash" class="img-fluid">
-                    </a>
-    
-                    <!-- Toggler -->
-    
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fa fa-bars"></span>
-                    </button>
-    
-                    <!-- Collapse -->
-                    <?php include 'navbar.php'; ?>
-                </div> <!-- / .container -->
-            </nav>
+            <?php include 'navbar.php'; ?>
         </div>
 
         
