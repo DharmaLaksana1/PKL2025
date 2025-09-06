@@ -48,53 +48,12 @@
                     </button>
     
                     <!-- Collapse -->
-                    <div class="collapse navbar-collapse" id="navbarMenu">
-                       
-                        <ul class="navbar-nav mx-auto">
-                            
-                            <li class="nav-item ">
-                                <a href="index.html" class="nav-link js-scroll-trigger" style="color: #20ad96;">
-                                   Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="index-2.html" class="nav-link js-scroll-trigger">
-                                    Visi Misi
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="about.php" class="nav-link js-scroll-trigger">
-                                    Tentang Kami
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="blog.php" class="nav-link js-scroll-trigger">
-                                    Kegiatan Kami
-                                </a>
-                            </li>
-                            <li class="nav-item ">
-                                <a href="contact.html" class="nav-link js-scroll-trigger">
-                                    Hubungi Kami
-                                </a>
-                            </li>
-    
-                            
-                        
-                        <div class="d-flex align-items-center">
-                            <div class="header-socials social-links d-none d-lg-none d-xl-block">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-pinterest"></i></a>
-                            </div>
-        
-                            
-                        </div>
-                       
-                    </div> <!-- / .navbar-collapse -->
+                     <!-- / .navbar-collapse -->
                 </div> <!-- / .container -->
             </nav>
         </div>
+
+        
     </header>
 
 
