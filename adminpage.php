@@ -73,9 +73,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="#pendidik-section" class="list-group-item list-group-item-action">
                 <i class="fas fa-chalkboard-teacher mr-2"></i> Pendidik
             </a>
-            <a href="#" class="list-group-item list-group-item-action text-danger" onclick="getConfirmation()">
+            <a href="logout.php" class="list-group-item list-group-item-action text-danger"
+            onclick="return confirm('Apakah Anda yakin ingin keluar?')">
                 <i class="fas fa-sign-out-alt mr-2"></i> Logout
             </a>
+
         </div>
     </div>
     <div id="page-content-wrapper">
