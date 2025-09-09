@@ -1,24 +1,43 @@
 <?php
-session_start(); // Mulai sesi
-
+session_start();
 require "koneksi.php";
 
-$username = $_POST["username"];
-$password = $_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-$query_sql = "SELECT * FROM admin 
-              WHERE username = '$username' AND password = '$password'";
+    $query_sql = "SELECT * FROM admin 
+                  WHERE username = '$username' AND password = '$password'";
+    $result = mysqli_query($conn, $query_sql);
 
-$result = mysqli_query($conn, $query_sql);
-
-if (mysqli_num_rows($result) > 0){
-    // Jika login berhasil, simpan username dalam sesi
-    $row = mysqli_fetch_assoc($result);
-    $_SESSION["username"] = $row["username"]; // simpan username dari tabel
-    header("Location: beranda.php");
-    exit();
-} else {
-    echo "<center><h1>Username atau Password Anda Salah. Silahkan Coba Login Kembali.</h1>
-            <button><strong><a href='loginAdmin.html'>Login</a></strong></button></center>";
+    if (mysqli_num_rows($result) > 0){
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION["username"] = $row["username"];
+        header("Location: adminpage.php");
+        exit();
+    } else {
+        $error = "Username atau Password Anda salah!";
+    }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin</title>
+</head>
+<body>
+    <h2 style="text-align:center;">Login Admin</h2>
+
+    <?php if (!empty($error)) { ?>
+        <p style="color:red; text-align:center;"><?php echo $error; ?></p>
+    <?php } ?>
+
+    <form method="POST" action="" style="text-align:center;">
+        <input type="text" name="username" placeholder="Masukkan Username" required><br><br>
+        <input type="password" name="password" placeholder="Masukkan Password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
