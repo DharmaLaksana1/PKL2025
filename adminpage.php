@@ -2,11 +2,13 @@
 session_start();
 include 'koneksi.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!isset($_SESSION['username'])) {
+// Cek apakah user sudah login
+if (empty($_SESSION['username'])) {
     header("Location: loginAdmin.php");
     exit;
-    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delete_kegiatan'])) {
         $kegiatanId = $_POST['id_kegiatan'];
         $deleteQuery = "DELETE FROM kegiatan WHERE id_kegiatan = ?";
@@ -36,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
