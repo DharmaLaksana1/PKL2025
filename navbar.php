@@ -47,7 +47,7 @@
         <div class="collapse navbar-collapse" id="navbarMenu">
           <ul class="navbar-nav mx-auto">
             <li class="nav-item">
-              <a href="index.php" class="nav-link js-scroll-trigger" style="color: #20ad96;">Dashboard</a>
+              <a href="index.php" class="nav-link js-scroll-trigger">Dashboard</a>
             </li>
             <li class="nav-item">
               <a href="index-2.php" class="nav-link js-scroll-trigger">Visi Misi</a>
