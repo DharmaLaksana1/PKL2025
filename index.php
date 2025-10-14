@@ -52,7 +52,7 @@
             <div class="col-md-12 col-xl-7">
                 <div class="banner-content text-center">
                     <!-- <span class="subheading" >Expert instruction</span> -->
-                    <h1><span class="font-weight-normal" >Yayasan</span> Dharma Laksana</h1>
+                    <h1><span class="font-weight-normal" >Yayasan</span> Dharma Laksana demo</h1>
                 </div>
             </div>
         </div> <!-- / .row -->
