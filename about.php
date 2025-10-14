@@ -25,17 +25,39 @@ require 'koneksi.php';   // koneksi ke database
 
 <body id="top-header">
 
-<header> 
-   
+<header>
+  <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid container-padding">
+        <a class="navbar-brand" href="index.php">
+          <img src="assets/images/dark-logo.png" alt="Eduhash" class="img-fluid">
+        </a>
 
-        <!-- Main Menu Start -->
-       
-        <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
-            <?php include 'navbar.php'; ?>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+          <span class="fa fa-bars"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a href="index.php" class="nav-link js-scroll-trigger">Dashboard</a></li>
+            <li class="nav-item"><a href="index-2.php" class="nav-link js-scroll-trigger">Visi Misi</a></li>
+            <li class="nav-item"><a href="about.php" class="nav-link js-scroll-trigger" style="color: #20ad96;">Tentang Kami</a></li>
+            <li class="nav-item"><a href="blog.php" class="nav-link js-scroll-trigger">Kegiatan Kami</a></li>
+            <li class="nav-item"><a href="contact.php" class="nav-link js-scroll-trigger">Hubungi Kami</a></li>
+          </ul>
+          <div class="d-flex align-items-center">
+            <div class="header-socials social-links d-none d-lg-none d-xl-block">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-pinterest"></i></a>
+            </div>
+          </div>
         </div>
-
-        
-    </header>
+      </div>
+    </nav>
+  </div>
+</header>
 
 <section class="page-header">
   <div class="container">
@@ -154,7 +176,7 @@ if ($result && $result->num_rows > 0) {
         echo '<div class="testimonial-item">
                 <i class="fa fa-quote-right"></i>
                 <div class="client-info">
-                    <img src="' . htmlspecialchars($row["foto_pendidik"]) . '" alt="Foto Pendidik" class="img-fluid rounded-circle pendidik-img mb-3">
+                    <img src="' . htmlspecialchars($row["foto_pendidik"]) . '" alt="Foto Pendidik">
                     <div class="testionial-author">' . htmlspecialchars($row['nama_pendidik']) . '</div>
                 </div>
                 <div class="testimonial-info-title">

@@ -1,3 +1,8 @@
+<?php
+require 'koneksi.php'; // koneksi ke database
+?>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -30,20 +35,38 @@
 
 
     <header> 
-   
-
-        <!-- Main Menu Start -->
-       
-        <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
-            <?php include 'navbar.php'; ?>
-        </div>
-
-        
-    </header>
-
-
-        
-
+    <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid container-padding">
+          <a class="navbar-brand" href="index.php">
+            <img src="assets/images/dark-logo.png" alt="Eduhash" class="img-fluid">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+                  data-target="#navbarMenu" aria-controls="navbarMenu"
+                  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item"><a href="index.php" class="nav-link js-scroll-trigger" style="color: #20ad96;">Dashboard</a></li>
+              <li class="nav-item"><a href="index-2.php" class="nav-link js-scroll-trigger">Visi Misi</a></li>
+              <li class="nav-item"><a href="about.php" class="nav-link js-scroll-trigger">Tentang Kami</a></li>
+              <li class="nav-item"><a href="blog.php" class="nav-link js-scroll-trigger" >Kegiatan Kami</a></li>
+              <li class="nav-item"><a href="contact.php" class="nav-link js-scroll-trigger">Hubungi Kami</a></li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <div class="header-socials social-links d-none d-lg-none d-xl-block">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-pinterest"></i></a>
+              </div>
+            </div>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav>
+    </div>
+  </header>
 
 <!-- Banner Section Start -->
 <section class="banner">
@@ -131,103 +154,43 @@
 
 <!-- About Section END -->
 <section class="section-padding popular-course bg-grey">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-7">
-                <div class="section-heading center-heading">
-                    <span class="subheading">Trending Courses</span>
-                    <h3>Pencapaian</h3>
-                    <p>Berikut adalah beberapa pencapaian dari yayasan</p>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-7">
+        <div class="section-heading center-heading">
+          <span class="subheading">Trending Courses</span>
+          <h3>Pencapaian</h3>
+          <p>Berikut adalah beberapa pencapaian dari yayasan</p>
         </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-        
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="course-block">
-                    <div class="course-img">
-                        <img src="assets/images/course/course-1.jpg" alt="" class="img-fluid">
-                         
-                    </div>
-                    
-                    <div class="course-content">
-                        <span class="course-cat">Pencapaian</span>
-                        <h4><a href="#">pencapaian abcdefghaijklmn</a></h4>   
-                    </div>
-                </div>
-            </div>
-
+      </div>
     </div>
+
+    <div class="row">
+      <?php
+      $query = "SELECT * FROM pencapaian ORDER BY id_pencapaian DESC LIMIT 6";
+      $result = mysqli_query($conn, $query);
+      while ($p = mysqli_fetch_assoc($result)):
+      ?>
+      <div class="col-lg-4 col-md-6">
+        <div class="course-block">
+          <div class="course-img">
+            <img src="<?= htmlspecialchars($p['foto_pencapaian']) ?>" alt="Pencapaian" class="img-fluid">
+          </div>
+          <div class="course-content">
+            <span class="course-cat">Pencapaian</span>
+            <h4>
+              <a href="#">
+                <?= htmlspecialchars(substr($p['judul_pencapaian'], 0, 50)) ?>
+              </a>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <?php endwhile; ?>
+    </div>
+  </div>
 </section>
+
 
 <!-- COunter Section start -->
 <!-- COunter Section start -->
@@ -270,6 +233,7 @@
 </section>
 
 
+
 <!-- COunter Section END -->
 
 <div class="container">
@@ -282,6 +246,8 @@
 
 
 <!-- About Section End -->
+
+<!-- Testimonial section start -->
 <!-- Testimonial section start -->
 <section class="testimonial section-padding">
     <div class="container">
@@ -289,8 +255,8 @@
             <div class="col-lg-7">
                 <div class="section-heading center-heading">
                     <span class="subheading">para</span>
-                    <h3>pembimbing yayasan</h3>
-                    <p>"Para pembimbing Yayasan Dharma Bakti adalah sosok yang tak hanya mengarahkan, tetapi juga menginspirasi. Dengan pengalaman dan dedikasi, mereka membentuk lingkungan yang mendukung pertumbuhan, membimbing setiap individu untuk mencapai potensi terbaiknya. Mereka adalah pilar yang menjaga visi dan misi yayasan tetap teguh, memberikan ilmu, nilai, serta semangat bagi generasi penerus."</p>
+                    <h3>Pengurus Yayasan</h3>
+                    <p>"Para Pengurus Yayasan Dharma Bakti adalah sosok yang tak hanya mengarahkan, tetapi juga menginspirasi. Dengan pengalaman dan dedikasi, mereka membentuk lingkungan yang mendukung pertumbuhan, membimbing setiap individu untuk mencapai potensi terbaiknya. Mereka adalah pilar yang menjaga visi dan misi yayasan tetap teguh, memberikan ilmu, nilai, serta semangat bagi generasi penerus."</p>
                 </div>
             </div>
         </div>
@@ -300,121 +266,84 @@
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="testimonials-slides owl-carousel owl-theme">
+                    <?php
+                    $query = "SELECT * FROM pengurus";
+                    $result = mysqli_query($conn, $query);
+                    if (mysqli_num_rows($result) > 0):
+                        while ($row = mysqli_fetch_assoc($result)):
+                    ?>
                     <div class="testimonial-item">
                         <i class="fa fa-quote-right"></i>
                         <div class="client-info">
-                            <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
-                            <div class="testionial-author">dhyka</div>
+                            <img src="<?= htmlspecialchars($row['foto_pengurus']) ?: 'assets/images/clients/default.jpg' ?>" alt="Foto Pengurus" class="img-fluid">
+                            <div class="testionial-author"><?= htmlspecialchars($row['nama_pengurus']) ?></div>
                         </div>
                         <div class="testimonial-info-title">
-                            <h4>ui ux</h4>
+                            <h4><?= htmlspecialchars($row['jabatan_pengurus']) ?></h4>
                         </div>
 
                         <div class="testimonial-info-desc">
-                            People who build the ux
+                            <?= htmlspecialchars($row['deskripsi_pengurus']) ?>
                         </div>
                     </div>
-                    <div class="testimonial-item">
-                        <i class="fa fa-quote-right"></i>
-                        <div class="client-info">
-                            <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
-                            <div class="testionial-author">pren</div>
-                        </div>
-                        <div class="testimonial-info-title">
-                            <h4>ui ux</h4>
-                        </div>
-
-                        <div class="testimonial-info-desc">
-                            People who build the ux
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <i class="fa fa-quote-right"></i>
-                        <div class="client-info">
-                            <img src="assets/images/clients/test-1.jpg" alt="" class="img-fluid">
-                            <div class="testionial-author">ade</div>
-                        </div>
-                        <div class="testimonial-info-title">
-                            <h4>ui ux</h4>
-                        </div>
-
-                        <div class="testimonial-info-desc">
-                            People who build the ux
-                        </div>
-                    </div>
-
-
-                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Testimonial section End -->
-<!-- Blog Section Start -->
-<section class="blog-section section-padding">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-lg-7">
-                <div class="section-heading center-heading">
-                    <span class="subheading">Blog News</span>
-                    <h3>Kegiatan Kegiatan Kami</h3>
-                    <p></p>
+                    <?php
+                        endwhile;
+                    else:
+                    ?>
+                        <p class="text-center">Belum ada data pengurus.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-
-        <div class="row">               
-            <div class="col-lg-4 col-xl-4 col-md-6 ">
-                <article class="blog-post-item">
-                    <div class="post-thumb">
-                        <img src="assets/images/blog/blog1.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="post-item mt-4">
-                        <div class="post-meta">
-                            <span class="post-author">Written by <a href="#" >Admin</a></span>
-                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>May 9, 2020</span>
-                        </div>
-                        <h4 class="post-title"><a href="blog-single.html">Deskripsi Kegiatan kami Deskripsi Kegiatan kami</a></h4>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-lg-4 col-xl-4 col-md-6 ">
-                <article class="blog-post-item">
-                    <div class="post-thumb">
-                        <img src="assets/images/blog/blog1.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="post-item mt-4">
-                        <div class="post-meta">
-                            <span class="post-author">Written by <a href="#" >Admin</a></span>
-                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>May 9, 2020</span>
-                        </div>
-                        <h4 class="post-title"><a href="blog-single.html">Deskripsi Kegiatan kami Deskripsi Kegiatan kami</a></h4>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-lg-4 col-xl-4 col-md-6 ">
-                <article class="blog-post-item">
-                    <div class="post-thumb">
-                        <img src="assets/images/blog/blog1.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="post-item mt-4">
-                        <div class="post-meta">
-                            <span class="post-author">Written by <a href="#" >Admin</a></span>
-                            <span class="post-date"><i class="fa fa-calendar-alt mr-2"></i>May 9, 2020</span>
-                        </div>
-                        <h4 class="post-title"><a href="blog-single.html">Deskripsi Kegiatan kami Deskripsi Kegiatan kami</a></h4>
-                    </div>
-                </article>
-            </div>
-
-            
-
-            
-        </div>
     </div>
 </section>
+
+
+<!-- Blog Section Start -->
+<section class="blog-section section-padding">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-7">
+        <div class="section-heading center-heading">
+          <span class="subheading">Blog News</span>
+          <h3>Kegiatan Kegiatan Kami</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <?php
+      $query = "SELECT * FROM kegiatan ORDER BY tanggal_kegiatan DESC LIMIT 3";
+      $result = mysqli_query($conn, $query);
+      while ($k = mysqli_fetch_assoc($result)):
+      ?>
+      <div class="col-lg-4 col-xl-4 col-md-6">
+        <article class="blog-post-item">
+          <div class="post-thumb">
+            <img src="<?= htmlspecialchars($k['foto_kegiatan']) ?>" alt="Foto Kegiatan" class="img-fluid">
+          </div>
+          <div class="post-item mt-4">
+            <div class="post-meta">
+              <span class="post-author">Ditulis oleh <a href="#">Admin</a></span>
+              <span class="post-date">
+                <i class="fa fa-calendar-alt mr-2"></i>
+                <?= date('F j, Y', strtotime($k['tanggal_kegiatan'])) ?>
+              </span>
+            </div>
+            <h4 class="post-title">
+              <a href="detail_kegiatan.php?id=<?= $k['id_kegiatan'] ?>">
+                <?= htmlspecialchars(substr($k['deskripsi_kegiatan'], 0, 50)) ?>…
+              </a>
+            </h4>
+          </div>
+        </article>
+      </div>
+      <?php endwhile; ?>
+    </div>
+  </div>
+</section>
+
+
 
 <!-- Footer section start -->
 <section class="footer-2">
