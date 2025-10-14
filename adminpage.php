@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 }
                                 echo '</td>';
                                 echo '<td>
-                                        <a href="edit_Kegiatan.php?id=' . htmlspecialchars($row['id_kegiatan']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        <a href="edit_kegiatan.php?id=' . htmlspecialchars($row['id_kegiatan']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
                                         <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus kegiatan ini?\');" style="display:inline-block;">
                                             <input type="hidden" name="id_kegiatan" value="' . htmlspecialchars($row['id_kegiatan']) . '">
                                             <button type="submit" name="delete_kegiatan" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
