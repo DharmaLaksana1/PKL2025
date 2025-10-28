@@ -1161,11 +1161,7 @@ Course Filter Tab
 
 .counterss {
   font-size: 60px;
-  margin-top: 30px;
-  line-height: 50px;
-  color: #20ad96;
-  font-family: "Kumbh Sans", sans-serif;
-  font-weight: 600;
+  color: #2ecc71; /* hijau muda */
 }
 
 .counter-item p {
