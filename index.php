@@ -118,7 +118,7 @@ require 'koneksi.php'; // koneksi ke database
                     <p>Sebagai sosok visioner yang berdedikasi tinggi, Ketua Yayasan Dharma Laksana memimpin dengan semangat pelayanan dan pengabdian kepada masyarakat. Di bawah kepemimpinannya, yayasan terus berkembang dalam menyediakan pendidikan berkualitas, pembinaan spiritual, serta perhatian sosial bagi anak-anak dan generasi muda. Komitmen beliau tercermin dalam berbagai inisiatif yang mendorong kemandirian, nilai-nilai kebangsaan, dan pelestarian budaya.</p>
                     
                 </div>
-                <ul class="about-features">
+                <!-- <ul class="about-features">
                     <li>
                         <i class="fa fa-check"></i>
                         <h5> Komitmen terhadap pendidikan dan kemanusiaan</h5>
@@ -133,7 +133,7 @@ require 'koneksi.php'; // koneksi ke database
                     </li>
                 </ul>
 
-                <a href="#" class="btn btn-main">Our Courses</a>
+                <a href="#" class="btn btn-main">Our Courses</a> -->
             </div>
         </div>
     </div>
