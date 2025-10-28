@@ -166,28 +166,32 @@ require 'koneksi.php'; // koneksi ke database
     </div>
 
     <div class="row">
-      <?php
-      $query = "SELECT * FROM pencapaian ORDER BY id_pencapaian DESC LIMIT 6";
-      $result = mysqli_query($conn, $query);
-      while ($p = mysqli_fetch_assoc($result)):
-      ?>
-      <div class="col-lg-4 col-md-6">
-        <div class="course-block">
-          <div class="course-img">
-            <img src="<?= htmlspecialchars($p['foto_pencapaian']) ?>" alt="Pencapaian" class="img-fluid">
-          </div>
-          <div class="course-content">
-            <span class="course-cat">Pencapaiann</span>
-            <h4>
-              <a href="#">
-                <?= htmlspecialchars(substr($p['judul_pencapaian'], 0, 50)) ?>
-              </a>
-            </h4>
-          </div>
-        </div>
+  <?php
+  $query = "SELECT * FROM pencapaian ORDER BY id_pencapaian DESC LIMIT 6";
+  $result = mysqli_query($conn, $query);
+  while ($p = mysqli_fetch_assoc($result)):
+  ?>
+  <div class="col-lg-4 col-md-6">
+    <div class="course-block">
+      <div class="course-img">
+        <img src="<?= htmlspecialchars($p['foto_pencapaian']) ?>" alt="Pencapaian" class="img-fluid">
       </div>
-      <?php endwhile; ?>
+      <div class="course-content">
+        <span class="course-cat">Pencapaian</span>
+        <h4>
+          <a href="#">
+            <?= htmlspecialchars(substr($p['judul_pencapaian'], 0, 50)) ?>
+          </a>
+        </h4>
+        <p class="course-desc">
+          <?= htmlspecialchars(substr($p['deskripsi_pencapaian'], 0, 100)) ?><?= strlen($p['deskripsi_pencapaian']) > 100 ? '...' : '' ?>
+        </p>
+      </div>
     </div>
+  </div>
+  <?php endwhile; ?>
+</div>
+
   </div>
 </section>
 
