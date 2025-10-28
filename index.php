@@ -210,7 +210,7 @@ require 'koneksi.php'; // koneksi ke database
       font-weight: 600;
     }
     .counter-itemss h6 {
-      text-align: center;
+     
       font-weight: 600;
     }
     .counter-itemss p {
