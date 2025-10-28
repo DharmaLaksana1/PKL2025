@@ -207,7 +207,7 @@ require 'koneksi.php'; // koneksi ke database
                 <div class="counter-item">
                     <h6>Tenaga pendidik</h6>
                     <div class="count">
-                        <span class="">100</span>
+                        <span class="counter">100</span>
                     </div>
                     <p>Dengan 100 tenaga pendidik yang berdedikasi, kami berkomitmen untuk memberikan pendidikan berkualitas bagi setiap peserta didik. Mereka adalah fondasi utama dalam menciptakan lingkungan belajar yang inspiratif dan penuh semangat, memastikan setiap individu mendapat bimbingan terbaik untuk masa depan yang gemilang.</p>
                 </div>
