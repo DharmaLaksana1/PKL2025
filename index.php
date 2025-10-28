@@ -177,7 +177,7 @@ require 'koneksi.php'; // koneksi ke database
             <img src="<?= htmlspecialchars($p['foto_pencapaian']) ?>" alt="Pencapaian" class="img-fluid">
           </div>
           <div class="course-content">
-            <span class="course-cat">Pencapaian</span>
+            <span class="course-cat">Pencapaiann</span>
             <h4>
               <a href="#">
                 <?= htmlspecialchars(substr($p['judul_pencapaian'], 0, 50)) ?>
