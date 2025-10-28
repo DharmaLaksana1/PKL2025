@@ -101,7 +101,7 @@ require 'koneksi.php';   // koneksi ke database
   </div>
 </section>
 
-<section class="counter-block">
+<!-- <section class="counter-block">
     <div class="container">
         <div class="row" >
             <div class="col-xl-12 bg-black counter-inner">
@@ -148,7 +148,7 @@ require 'koneksi.php';   // koneksi ke database
             </div>
        </div>
     </div>
-</section>
+</section> -->
 
 <!-- TESTIMONIALS SECTION -->
 <section class="testimonial section-padding">
