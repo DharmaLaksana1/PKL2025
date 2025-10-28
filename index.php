@@ -204,30 +204,30 @@ require 'koneksi.php'; // koneksi ke database
 
         <div class="row">
             <div class="col-lg-3 col-md-6">
-                <div class="counter-item">
+                <div class="counter-itemss">
                     <h6>Tenaga pendidik</h6>
                     <div class="count">
-                        <span class="counter">100</span>
+                        <span class="counterss">100</span>
                     </div>
                     <p>Dengan 100 tenaga pendidik yang berdedikasi, kami berkomitmen untuk memberikan pendidikan berkualitas bagi setiap peserta didik. Mereka adalah fondasi utama dalam menciptakan lingkungan belajar yang inspiratif dan penuh semangat, memastikan setiap individu mendapat bimbingan terbaik untuk masa depan yang gemilang.</p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
-                <div class="counter-item">
+                <div class="counter-itemss">
                     <h6>Anak didik</h6>
                     <div class="count">
-                        <span class="counter">100</span>
+                        <span class="counterss">100</span>
                     </div>
                     <p>Sebanyak 100 anak didik di Yayasan Dharma Bakti menjadi bagian dari perjalanan pendidikan yang penuh semangat dan inspirasi. Dengan perhatian dan bimbingan dari para tenaga pendidik, mereka berkembang menjadi generasi yang cerdas, berkarakter, dan siap menghadapi masa depan. Setiap individu adalah cerminan harapan, membawa ilmu dan nilai kehidupan yang akan mengukir perubahan positif bagi diri mereka dan masyarakat.</p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">         
-                <div class="counter-item">
+                <div class="counter-itemss">
                     <h6>Alumnus</h6>
                     <div class="count">
-                        <span class="counter">100</span>
+                        <span class="counterss">100</span>
                     </div>
                     <p>Sebanyak 100 alumnus Yayasan Dharma Bakti telah menapaki berbagai jalan menuju kesuksesan, membawa ilmu dan nilai yang mereka peroleh selama masa pendidikan. Mereka adalah cerminan dedikasi dan kualitas pembelajaran yang diberikan, membuktikan bahwa pendidikan adalah fondasi bagi masa depan yang gemilang. Dengan semangat dan kebersamaan, mereka terus berkontribusi bagi masyarakat, menjadi inspirasi bagi generasi penerus.</p>
                 </div>
