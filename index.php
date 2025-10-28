@@ -202,12 +202,12 @@ require 'koneksi.php'; // koneksi ke database
   <div class="container">
   <style>
     .counterss {
-      font-size: 48px;       /* Membesarkan angka */
-      font-weight: bold;     /* Membuat tebal */
-      color: #28a745;        /* Warna hijau */
-      display: block;
-      margin: 10px 0;
-      text-align: center;
+      font-size: 60px;
+      margin-top: 30px;
+      line-height: 50px;
+      color: #20ad96;
+      font-family: "Kumbh Sans", sans-serif;
+      font-weight: 600;
     }
     .counter-itemss h6 {
       text-align: center;
