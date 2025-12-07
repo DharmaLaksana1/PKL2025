@@ -3,6 +3,7 @@ session_start();
 require 'koneksi.php'; // Ganti dengan koneksi ke database kamu
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $judul = $_POST['judul_kegiatan']; 
     $tanggal = $_POST['tanggal_kegiatan'];
     $deskripsi = $_POST['deskripsi_kegiatan'];
     $base64_image = $_POST['cropped_image'];
@@ -24,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         file_put_contents($file_path, $image_base64);
     }
 
-    $query = "INSERT INTO kegiatan (tanggal_kegiatan, deskripsi_kegiatan, foto_kegiatan)
-              VALUES (?, ?, ?)";
+    $query = "INSERT INTO kegiatan (judul_kegiatan, tanggal_kegiatan, deskripsi_kegiatan, foto_kegiatan)
+          VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, "sss", $tanggal, $deskripsi, $file_path);
+    mysqli_stmt_bind_param($stmt, "ssss", $judul, $tanggal, $deskripsi, $file_path);
 
     if (mysqli_stmt_execute($stmt)) {
         header("Location: adminpage.php");
@@ -54,6 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div class="card-body">
             <form action="" method="POST" enctype="multipart/form-data">
+
+                <!-- Judul  -->
+                <div class="form-group">
+                    <label for="judul_kegiatan">Judul Kegiatan</label>
+                    <input type="text" class="form-control" name="judul_kegiatan" placeholder="Masukkan judul kegiatan..." required>
+                </div>
+            
                 <!-- Tanggal -->
                 <div class="form-group">
                     <label for="tanggal_kegiatan">Tanggal Kegiatan</label>
