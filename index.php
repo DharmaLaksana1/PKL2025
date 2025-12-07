@@ -344,19 +344,27 @@ require 'koneksi.php'; // koneksi ke database
           <div class="post-thumb">
             <img src="<?= htmlspecialchars($k['foto_kegiatan']) ?>" alt="Foto Kegiatan" class="img-fluid">
           </div>
+
           <div class="post-item mt-4">
             <div class="post-meta">
-              <span class="post-author">Ditulis oleh <a href="#">Admin</a></span>
               <span class="post-date">
                 <i class="fa fa-calendar-alt mr-2"></i>
                 <?= date('F j, Y', strtotime($k['tanggal_kegiatan'])) ?>
               </span>
             </div>
+
+            <!-- MENAMPILKAN JUDUL KEGIATAN -->
             <h4 class="post-title">
               <a href="detail_kegiatan.php?id=<?= $k['id_kegiatan'] ?>">
-                <?= htmlspecialchars(substr($k['deskripsi_kegiatan'], 0, 50)) ?>…
+                <?= htmlspecialchars($k['judul_kegiatan']) ?>
               </a>
             </h4>
+
+            <!-- DESKRIPSI RINGKAS (optional, bisa dihapus jika tidak diperlukan) -->
+            <p class="mt-2" style="font-size:14px; color:#666;">
+              <?= htmlspecialchars(substr($k['deskripsi_kegiatan'], 0, 80)) ?>…
+            </p>
+
           </div>
         </article>
       </div>

@@ -34,8 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Jika ada foto baru dicrop
     if (!empty($_POST['cropped_image'])) {
         $base64_image = $_POST['cropped_image'];
+
         if (strpos($base64_image, 'data:image') === 0) {
             $folder_upload = 'uploads/';
+
             if (!is_dir($folder_upload)) {
                 mkdir($folder_upload, 0777, true);
             }
@@ -47,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $filename = uniqid() . '.' . $image_type;
             $foto_path = $folder_upload . $filename;
+
             file_put_contents($foto_path, $image_base64);
         }
     }
@@ -55,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $updateQuery = "UPDATE kegiatan 
                     SET judul_kegiatan = ?, tanggal_kegiatan = ?, deskripsi_kegiatan = ?, foto_kegiatan = ?
                     WHERE id_kegiatan = ?";
-                    
+
     $stmtUpdate = mysqli_prepare($conn, $updateQuery);
     mysqli_stmt_bind_param($stmtUpdate, "ssssi", $judul, $tanggal, $deskripsi, $foto_path, $id_kegiatan);
 
@@ -73,9 +76,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Edit Kegiatan</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
 </head>
+
 <body style="background-color: #f4f7f6; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
 <div class="container mt-5">
@@ -83,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card-header">
             <h2>Edit Data Kegiatan</h2>
         </div>
+
         <div class="card-body">
 
             <form action="edit_kegiatan.php?id=<?= $id_kegiatan ?>" method="POST" enctype="multipart/form-data">
@@ -90,14 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <!-- Judul Kegiatan -->
                 <div class="form-group">
                     <label for="judul_kegiatan">Judul Kegiatan</label>
-                    <input type="text" class="form-control" name="judul_kegiatan" 
+                    <input type="text" class="form-control" name="judul_kegiatan"
                            value="<?= $data['judul_kegiatan'] ?>" required>
                 </div>
 
                 <!-- Tanggal -->
                 <div class="form-group">
                     <label for="tanggal_kegiatan">Tanggal Kegiatan</label>
-                    <input type="date" class="form-control" name="tanggal_kegiatan" 
+                    <input type="date" class="form-control" name="tanggal_kegiatan"
                            value="<?= $data['tanggal_kegiatan'] ?>" required>
                 </div>
 
@@ -131,20 +137,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Modal Crop -->
 <div class="modal fade" id="cropModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document" style="max-width: 800px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Crop Foto Baru</h5>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <img id="cropImage" style="max-width: 100%;">
-      </div>
-      <div class="modal-footer">
-        <button type="button" id="cropButton" class="btn btn-primary">Crop & Gunakan</button>
-      </div>
+    <div class="modal-dialog" role="document" style="max-width: 800px;">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Foto Baru</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <img id="cropImage" style="max-width: 100%;">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="cropButton" class="btn btn-primary">Crop & Gunakan</button>
+            </div>
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Script -->
@@ -154,29 +164,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script>
 let cropper;
+
 $('#foto_kegiatan').on('change', function (e) {
     const files = e.target.files;
+
     if (files && files.length > 0) {
         const reader = new FileReader();
+
         reader.onload = function (event) {
             $('#cropImage').attr('src', event.target.result);
             $('#cropModal').modal('show');
         };
+
         reader.readAsDataURL(files[0]);
     }
 });
 
-$('#cropModal').on('shown.bs.modal', function () {
-    cropper = new Cropper(document.getElementById('cropImage'), {
-        aspectRatio: 760 / 415 ,
-        viewMode: 1,
+$('#cropModal')
+    .on('shown.bs.modal', function () {
+        cropper = new Cropper(document.getElementById('cropImage'), {
+            aspectRatio: 760 / 415,
+            viewMode: 1,
+        });
+    })
+    .on('hidden.bs.modal', function () {
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
     });
-}).on('hidden.bs.modal', function () {
-    if (cropper) {
-        cropper.destroy();
-        cropper = null;
-    }
-});
 
 $('#cropButton').on('click', function () {
     const canvas = cropper.getCroppedCanvas({
@@ -186,10 +202,12 @@ $('#cropButton').on('click', function () {
 
     canvas.toBlob(function (blob) {
         const reader = new FileReader();
+
         reader.onloadend = function () {
             $('#cropped_image').val(reader.result);
             $('#cropModal').modal('hide');
         };
+
         reader.readAsDataURL(blob);
     });
 });

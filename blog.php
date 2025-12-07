@@ -66,56 +66,51 @@ require 'koneksi.php';   // sambungkan ke database
     <div class="container">
       <div class="row">
         <!-- List Kegiatan -->
-        <div class="col-lg-8 col-xl-8">
-          <?php
-          $sql   = "SELECT * FROM kegiatan ORDER BY tanggal_kegiatan DESC";
-          $res   = mysqli_query($conn, $sql);
-          if (mysqli_num_rows($res) > 0):
-            while ($row = mysqli_fetch_assoc($res)):
-          ?>
-          <article class="blog-post-item">
-            <div class="post-thumb">
-              <img src="<?= htmlspecialchars($row['foto_kegiatan']) ?>"
-                   alt="Foto Kegiatan"
-                   class="img-fluid">
-            </div>
-            <div class="post-item mt-4">
-              <div class="post-meta">
-                <span class="post-date">
-                  <i class="fa fa-calendar-alt mr-2"></i>
-                  <?= date('F j, Y', strtotime($row['tanggal_kegiatan'])) ?>
-                </span>
-              </div>
-              <h2 class="post-title">
-                <?= htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 60)) ?>…
-              </h2>
-              <div class="post-content">
-                <p>
-                  <?= nl2br(htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 200))) ?>…
-                </p>
-                <a href="detail_kegiatan.php?id=<?= $row['id_kegiatan'] ?>"
-                   class="read-more">
-                  Selengkapnya <i class="fa fa-angle-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-          </article>
-          <?php
-            endwhile;
-          else:
-          ?>
-            <p>Tidak ada kegiatan untuk ditampilkan.</p>
-          <?php endif; ?>
+<div class="col-lg-8 col-xl-8">
+  <?php
+  $sql   = "SELECT * FROM kegiatan ORDER BY tanggal_kegiatan DESC";
+  $res   = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($res) > 0):
+    while ($row = mysqli_fetch_assoc($res)):
+  ?>
+  <article class="blog-post-item mb-5">
+    <div class="post-thumb">
+      <img src="<?= htmlspecialchars($row['foto_kegiatan']) ?>"
+           alt="Foto Kegiatan"
+           class="img-fluid rounded shadow-sm">
+    </div>
 
-          <!-- Pagination (opsional, sesuaikan jika sudah ada logic) -->
-          <nav class="post-navigation">
-            <ul>
-              <li class="page-num active"><span class="page-url">1</span></li>
-              <li class="page-num"><a class="page-url" href="#">2</a></li>
-              <li class="page-num"><a class="page-url" href="#">3</a></li>
-            </ul>
-          </nav>
-        </div>
+    <div class="post-item mt-4">
+      <div class="post-meta mb-2">
+        <span class="post-date">
+          <i class="fa fa-calendar-alt mr-2"></i>
+          <?= date('F j, Y', strtotime($row['tanggal_kegiatan'])) ?>
+        </span>
+      </div>
+
+      <!-- JUDUL KEGIATAN -->
+<h2 class="post-title" style="font-size: 26px; font-weight: 700; color:#333;">
+  <?= htmlspecialchars($row['judul_kegiatan']) ?>
+</h2>
+
+
+      <!-- DESKRIPSI SINGKAT -->
+      <div class="post-content mt-3">
+        <p style="font-size: 15px; color:#555; line-height:1.6;">
+          <?= nl2br(htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 180))) ?>…
+        </p>
+      </div>
+    </div>
+  </article>
+  <?php
+    endwhile;
+  else:
+  ?>
+    <p>Tidak ada kegiatan untuk ditampilkan.</p>
+  <?php endif; ?>
+
+</div>
+
 
         <!-- Sidebar (kosong atau isi sesuai kebutuhan) -->
         <div class="col-lg-4 col-xl-4">
