@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<table class="table table-bordered table-hover">';
                             echo '<thead class="thead-light"><tr>
                                     <th>No.</th>
+                                    <th>Juduk</th>
                                     <th>Tanggal</th>
                                     <th>Deskripsi</th>
                                     <th>Foto</th>
@@ -113,6 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             while ($row = mysqli_fetch_assoc($resultKegiatan)) {
                                 echo '<tr>';
                                 echo '<td>' . $no . '</td>';
+                                echo '<td>' . htmlspecialchars($row['judul_kegiatan']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['tanggal_kegiatan']) . '</td>';
                                 echo '<td>' . htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 100)) . '...</td>'; // Potong deskripsi
                                 echo '<td>';
