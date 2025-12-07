@@ -46,15 +46,15 @@
           </ul>
         </div>
         
-        <?php
-if (isset($_GET['success'])) {
-    if ($_GET['success'] == '1') {
-        echo '<div class="alert alert-success contact__msg" role="alert" style="margin-top: 20px;">Pesan Anda telah berhasil dikirim! Kami akan segera menghubungi Anda.</div>';
-    } elseif ($_GET['success'] == '0') {
-        echo '<div class="alert alert-danger contact__msg" role="alert" style="margin-top: 20px;">Oops! Ada masalah saat mengirim pesan Anda. Pastikan semua kolom terisi dengan benar.</div>';
-    }
-}
-?>
+                <?php
+          if (isset($_GET['success'])) {
+            if ($_GET['success'] == '1') {
+              echo '<div class="alert alert-success contact__msg" role="alert" style="margin-top: 20px;">Pesan Anda telah berhasil dikirim! Kami akan segera menghubungi Anda.</div>';
+            } elseif ($_GET['success'] == '0') {
+              echo '<div class="alert alert-danger contact__msg" role="alert" style="margin-top: 20px;">Oops! Ada masalah saat mengirim pesan Anda. Pastikan semua kolom terisi dengan benar.</div>';
+            }
+          }
+        ?>
       </div>
     </div>
   </div>
@@ -75,7 +75,7 @@ if (isset($_GET['success'])) {
             <div class="col-lg-7 col-xl-7">
                 <div class="section-heading center-heading">
                     <span class="subheading">contact</span>
-                    <h3>For more information about our courses, get in touch</h3>
+                    <h3>For more information about our courses, get in touch Demo</h3>
                 </div>
             </div>
           </div>
