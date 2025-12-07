@@ -25,11 +25,6 @@ ini_set('display_errors', 1);
 
 <body id="top-header">
 
-    <!-- <header>
-        <div class="site-navigation main_menu menu-transparent" id="mainmenu-area">
-            <?php include 'navbar.php'; ?>
-        </div>
-    </header> -->
 
     <section class="page-header">
         <div class="container">
