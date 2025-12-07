@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-fluid">
             <h1 class="mt-4 mb-4">Panel Administrasi</h1>
 
+            <!-- ======================= BAGIAN KEGIATAN ======================= -->
             <section id="kegiatan-section">
                 <div class="card">
                     <div class="card-header">
@@ -103,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<table class="table table-bordered table-hover">';
                             echo '<thead class="thead-light"><tr>
                                     <th>No.</th>
-                                    <th>Juduk</th>
+                                    <th>Judul</th>
                                     <th>Tanggal</th>
                                     <th>Deskripsi</th>
                                     <th>Foto</th>
@@ -116,7 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo '<td>' . $no . '</td>';
                                 echo '<td>' . htmlspecialchars($row['judul_kegiatan']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['tanggal_kegiatan']) . '</td>';
-                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 100)) . '...</td>'; // Potong deskripsi
+                                echo '<td>' . htmlspecialchars(substr($row['deskripsi_kegiatan'], 0, 100)) . '...</td>';
+
                                 echo '<td>';
                                 if (!empty($row['foto_kegiatan']) && file_exists($row['foto_kegiatan'])) {
                                     echo '<img src="' . htmlspecialchars($row['foto_kegiatan']) . '" alt="Foto Kegiatan">';
@@ -124,19 +126,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     echo 'No Image';
                                 }
                                 echo '</td>';
+
                                 echo '<td>
                                         <a href="edit_kegiatan.php?id=' . htmlspecialchars($row['id_kegiatan']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
-                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus kegiatan ini?\');" style="display:inline-block;">
+                                        <form method="POST" action="adminpage.php" 
+                                            onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus kegiatan ini?\');" 
+                                            style="display:inline-block;">
+                                            
                                             <input type="hidden" name="id_kegiatan" value="' . htmlspecialchars($row['id_kegiatan']) . '">
-                                            <button type="submit" name="delete_kegiatan" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                            <button type="submit" name="delete_kegiatan" 
+                                                class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                       </td>';
                                 echo '</tr>';
                                 $no++;
-                                
                             }
+
                             echo '</tbody></table>';
-                            echo '</div>'; // End table-responsive
+                            echo '</div>';
+
                             echo '<a href="tambah_Kegiatan.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Kegiatan</a>';
                         } else {
                             echo '<div class="alert alert-info" role="alert">Tidak ada data kegiatan.</div>';
@@ -147,6 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </section>
 
+            <!-- ======================= BAGIAN PENGURUS ======================= -->
             <section id="pengurus-section">
                 <div class="card">
                     <div class="card-header">
@@ -176,6 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo '<td>' . htmlspecialchars($row['nama_pengurus']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['jabatan_pengurus']) . '</td>';
                                 echo '<td>' . htmlspecialchars(substr($row['deskripsi_pengurus'], 0, 100)) . '...</td>';
+
                                 echo '<td>';
                                 if (!empty($row['foto_pengurus']) && file_exists($row['foto_pengurus'])) {
                                     echo '<img src="' . htmlspecialchars($row['foto_pengurus']) . '" alt="Foto Pengurus">';
@@ -183,21 +193,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     echo 'No Image';
                                 }
                                 echo '</td>';
+
                                 echo '<td>
-                                        <a href="edit_pengurus.php?id=' . htmlspecialchars($row['id_pengurus']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
-                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pengurus ini?\');" style="display:inline-block;">
+                                        <a href="edit_pengurus.php?id=' . htmlspecialchars($row['id_pengurus']) . '" 
+                                            class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                                        
+                                        <form method="POST" action="adminpage.php" 
+                                            onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pengurus ini?\');" 
+                                            style="display:inline-block;">
+
                                             <input type="hidden" name="id_pengurus" value="' . htmlspecialchars($row['id_pengurus']) . '">
-                                            <button type="submit" name="delete_pengurus" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                            <button type="submit" name="delete_pengurus" 
+                                                class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                       </td>';
+
                                 echo '</tr>';
                                 $no++;
                             }
+
                             echo '</tbody></table>';
-                            echo '</div>'; // End table-responsive
+                            echo '</div>';
                             echo '<a href="tambah_Pengurus.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pengurus</a>';
                         } else {
-                            echo '<div class="alert alert-info" role="alert">Tidak ada data pengurus.</div>';
+                            echo '<div class="alert alert-info">Tidak ada data pengurus.</div>';
                             echo '<a href="tambah_Pengurus.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pengurus</a>';
                         }
                         ?>
@@ -205,6 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </section>
 
+            <!-- ======================= BAGIAN PENCAPAIAN ======================= -->
             <section id="pencapaian-section">
                 <div class="card">
                     <div class="card-header">
@@ -232,6 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo '<td>' . $no . '</td>';
                                 echo '<td>' . htmlspecialchars($row['judul_pencapaian']) . '</td>';
                                 echo '<td>' . htmlspecialchars(substr($row['deskripsi_pencapaian'], 0, 100)) . '...</td>';
+
                                 echo '<td>';
                                 if (!empty($row['foto_pencapaian']) && file_exists($row['foto_pencapaian'])) {
                                     echo '<img src="' . htmlspecialchars($row['foto_pencapaian']) . '" alt="Foto Pencapaian">';
@@ -239,21 +260,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     echo 'No Image';
                                 }
                                 echo '</td>';
+
                                 echo '<td>
                                         <a href="edit_pencapaian.php?id=' . htmlspecialchars($row['id_pencapaian']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
-                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pencapaian ini?\');" style="display:inline-block;">
+
+                                        <form method="POST" action="adminpage.php" 
+                                            onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pencapaian ini?\');" 
+                                            style="display:inline-block;">
+
                                             <input type="hidden" name="id_pencapaian" value="' . htmlspecialchars($row['id_pencapaian']) . '">
-                                            <button type="submit" name="delete_pencapaian" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                            <button type="submit" name="delete_pencapaian" 
+                                                class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                       </td>';
+
                                 echo '</tr>';
                                 $no++;
                             }
+
                             echo '</tbody></table>';
-                            echo '</div>'; // End table-responsive
+                            echo '</div>';
                             echo '<a href="tambah_pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
                         } else {
-                            echo '<div class="alert alert-info" role="alert">Tidak ada data pencapaian.</div>';
+                            echo '<div class="alert alert-info">Tidak ada data pencapaian.</div>';
                             echo '<a href="tambah_pencapaian.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pencapaian</a>';
                         }
                         ?>
@@ -261,6 +290,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </section>
 
+            <!-- ======================= BAGIAN PENDIDIK ======================= -->
             <section id="pendidik-section">
                 <div class="card">
                     <div class="card-header">
@@ -290,6 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo '<td>' . htmlspecialchars($row['nama_pendidik']) . '</td>';
                                 echo '<td>' . htmlspecialchars($row['jabatan_pendidik']) . '</td>';
                                 echo '<td>' . htmlspecialchars(substr($row['deskripsi_pendidik'], 0, 100)) . '...</td>';
+
                                 echo '<td>';
                                 if (!empty($row['foto_pendidik']) && file_exists($row['foto_pendidik'])) {
                                     echo '<img src="' . htmlspecialchars($row['foto_pendidik']) . '" alt="Foto Pendidik">';
@@ -297,21 +328,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     echo 'No Image';
                                 }
                                 echo '</td>';
+
                                 echo '<td>
-                                        <a href="edit_pendidik.php?id=' . htmlspecialchars($row['id_pendidik']) . '" class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
-                                        <form method="POST" action="adminpage.php" onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');" style="display:inline-block;">
+                                        <a href="edit_pendidik.php?id=' . htmlspecialchars($row['id_pendidik']) . '" 
+                                            class="btn btn-sm btn-edit"><i class="fas fa-edit"></i> Edit</a>
+
+                                        <form method="POST" action="adminpage.php" 
+                                            onsubmit="return confirm(\'Apakah Anda yakin ingin menghapus pendidik ini?\');" 
+                                            style="display:inline-block;">
+
                                             <input type="hidden" name="id_pendidik" value="' . htmlspecialchars($row['id_pendidik']) . '">
-                                            <button type="submit" name="delete_pendidik" class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
+                                            <button type="submit" name="delete_pendidik" 
+                                                class="btn btn-sm btn-delete"><i class="fas fa-trash-alt"></i> Hapus</button>
                                         </form>
                                       </td>';
+
                                 echo '</tr>';
                                 $no++;
                             }
+
                             echo '</tbody></table>';
                             echo '</div>';
                             echo '<a href="tambah_pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
                         } else {
-                            echo '<div class="alert alert-info" role="alert">Tidak ada data pendidik.</div>';
+                            echo '<div class="alert alert-info">Tidak ada data pendidik.</div>';
                             echo '<a href="tambah_pendidik.php" class="btn btn-add"><i class="fas fa-plus"></i> Tambah Pendidik</a>';
                         }
                         ?>
@@ -321,14 +361,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </div>
     </div>
-    </div>
+</div>
+
 <script src="assets/vendors/jquery/jquery.min.js"></script>
 <script src="assets/vendors/bootstrap/js/popper.js"></script>
 <script src="assets/vendors/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/script.js"></script>
 
 <script>
-    // Pastikan ini dijalankan setelah DOM siap
     $(document).ready(function() {
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
@@ -339,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     function getConfirmation(){
         var retval = confirm ("Apakah Anda yakin ingin keluar?");
         if(retval == true){
-            window.location.href ="index.html"; // Pastikan ini mengarah ke halaman utama atau logout
+            window.location.href ="index.html";
             return true;
         }else{
             return false;
